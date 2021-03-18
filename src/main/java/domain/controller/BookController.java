@@ -20,8 +20,8 @@ import domain.Encja.Book;
 import domain.Service.ServiceBook;
 
 @RestController
-public class MainController {
-//	List<Book> Listbook = new ArrayList<>();
+public class BookController {
+
 	
 	@Autowired
 	ServiceBook servicebook;
@@ -29,11 +29,7 @@ public class MainController {
 	@GetMapping("/api/bookISBN/{ISBN}")
 	public Book getBookByISBN(@PathVariable String ISBN)
 	{
-//		Listbook.add(new Book("Mistrz","1112223334441"));
-//		Listbook.add(new Book("Twierdza","3212223334441"));
-//		Listbook.add(new Book("Mars","1402223334441"));
-		//response.addHeader("Spring", "jest super");
-//		System.out.println("index");
+
 		
 		Book book = servicebook.addBookToList().stream().filter(x->x.getISBN().equals(ISBN)).findAny().get();
 		return (Book) book;
@@ -42,10 +38,7 @@ public class MainController {
 	@GetMapping("/api/bookName/{name}")
 	public List<Book> FilterBookByName(@PathVariable String name)
 	{
-//		Listbook.add(new Book("Mistrz","1112223334441"));
-//		Listbook.add(new Book("Twierdza","3212223334441"));
-//		Listbook.add(new Book("Mars","1402223334441"));
-		//response.addHeader("Spring", "jest super");
+
 		System.out.println("index");
 		List<Book> book = servicebook.addBookToList().stream().filter(x->x.getName().contains(name)).collect(Collectors.toList());
 		return  book;
